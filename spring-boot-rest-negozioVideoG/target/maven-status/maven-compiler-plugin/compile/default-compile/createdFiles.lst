@@ -1,0 +1,5 @@
+com\videogioco\controller\NegozioController.class
+com\videogioco\model\Videogioco.class
+com\videogioco\service\CatalogoService.class
+com\videogioco\service\DatabaseService.class
+com\videogioco\config\WebConfig.class
