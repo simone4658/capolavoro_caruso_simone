@@ -1,0 +1,4 @@
+
+        var urlImmagine ="immagini_sfondo/" + games[gameIndex].nome +".png";
+        console.log(urlImmagine);
+        immagine_dettaglio.src=urlImmagine;

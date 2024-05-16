@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Accedi</button>
+    </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Ottieni i valori inseriti dall'utente
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Controlla l'autenticazione
+            if (authenticate(username, password)) {
+                console.log('Accesso effettuato con successo.');
+                console.log('Username: ' + username);
+                console.log('Password: ' + password);
+                // Reindirizza l'utente alla pagina contenente i file sopra riportati
+                window.location.href = 'nome_pagina_contenente_file.html';
+            } else {
+                alert('Credenziali non valide. Riprova.');
+            }
+        });
+
+        // Funzione per controllare l'autenticazione
+        function authenticate(username, password) {
+            // Questa è una logica di autenticazione di esempio
+            // In un'applicazione reale, dovresti verificare le credenziali con un database sicuro o un sistema di autenticazione
+            var validUsername = 'admin';
+            var validPassword = 'password';
+
+            return username === validUsername && password === validPassword;
+        }
+    </script>
+    <script src="mioScript.js"></script>
+</body>
+</html>

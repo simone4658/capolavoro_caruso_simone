@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage Centro Videogioco</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('../front-end/immagini_sfondo/videogames.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    color: #ffffff;
+}
+
+.feature {
+    text-align: center;
+    margin: 0 20px;
+    color: #ffffff;
+}
+
+.feature .icon1 {
+    width: 150px; /* Imposta la larghezza desiderata per l'icona 1 */
+}
+
+.feature .icon2 {
+    width: 110px; /* Imposta la larghezza desiderata per l'icona 2 */
+}
+
+.feature .icon3 {
+    width: 130px; /* Imposta la larghezza desiderata per l'icona 3 */
+}
+
+.feature .icon4 {
+    width: 160px; /* Imposta la larghezza desiderata per l'icona 4 */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+}
+
+</style>
+<body>
+    <header>
+        <h1>Benvenuto sulla nostra Homepage!</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="chi_siamo.html">Chi Siamo</a></li>
+                <li><a href="servizi.html">Servizi</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <p>Offriamo videogiochi innovativi per ogni esigenza</p>
+            <button onclick="window.location.href='negozio.html';" class="btn">Scopri il nostro mondo</button>
+            <button onclick="window.location.href='negozioDImatteo.html';" class="btn">Scopri il mondo di Matteo</button>
+        </div>
+    </section>
+    <section class="features">
+        <div class="feature">
+            <img src="immagini_sfondo/Call-of-Duty-Modern-Warfare-Transparent.png" alt="Call Of Duty" class="icon1">
+            <p>Entra in una delle saghe di videogiochi sparatutto più famose, con vasta scelta di armi, skin, eventi di ogni tipo e soprattutto competi con i tuoi amici per essere una grande squadre, oppure in solo per dimostrare che sei grande soldato</p>
+        </div>
+        <div class="feature">
+            <img src="immagini_sfondo/The Last Of Us Parte I.png" alt="The Last Of Us" class="icon2">
+            <p>Immergiti in un mondo post-apocalittico, andato in fumo per via di un virus, dove vestirai i panni di una ragazzina, che attraversa il suo mondo, dove ormai la sopravvivenza sembra minima, e dove puoi facilmente incontrare vari tipi di zombie mutanti |PARTE 1|</p>
+        </div>
+        <div class="feature">
+            <img src="immagini_sfondo/Super Mario Wonder.png" alt="Super Mario" class="icon3">
+            <p>Tuffati in un'avventura volta alla salvezza della principessa Peach, che è nelle grinfie di Bowser (il re delle tartarughe), vestendo i panni di un simpatico idraulico coi baffi, di nome Mario e combattendo in miriade di livelli, in svariati mondi che ti faranno divertire molto</p>
+        </div>
+        <div class="feature">
+            <img src="immagini_sfondo/Peggle Extreme.png" alt="Peggle" class="icon4">
+            <p>Uno dei migliori giochi per passare il tempo, un gioco a cui giochi quando non hai niente da fare, con una miriade di livelli, una vasta scelta intercambiabile di personaggi e una meccanica di gioco vecchio stile, che ti farà uscire di testa</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Game Center. Tutti i diritti sono riservati.</p>
+    </footer>
+</body>
+</html>

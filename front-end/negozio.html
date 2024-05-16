@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Benvenuto/i al Game Center!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+      body {
+        background-color: #f8f9fa; /* colore di sfondo leggermente grigio */
+        padding-top: 50px; /* spazio in alto per evitare sovrapposizioni con la barra di navigazione */
+        background-image: url('immagini_sfondo/20180207_103822-1.jpg');
+        background-size: cover;
+      }
+
+table,tr {
+  border: 4px solid var(--bg-color-tabella);
+  border-radius: 5px;
+}
+#buttonPanel {
+  background-color: var(--bg-color-tabella2);
+  padding: 15px;
+  border-radius: 5px;
+}
+
+      .container {
+        background-color: #fff; /* sfondo bianco */
+        border-radius: 5px; /* bordi arrotondati */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* ombra leggera */
+        padding: 20px; /* spaziatura interna */
+      }
+
+      .btn {
+        margin-bottom: 10px; /* spaziatura tra i pulsanti */
+      }
+
+      .modal-content {
+        background-color: #fff; /* sfondo bianco */
+        border-radius: 5px; /* bordi arrotondati */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* ombra leggera */
+      }
+      
+      h1 {
+        color: rgb(255, 255, 255); /* Cambia il colore del testo dell'intestazione */
+      }
+      p {
+        color: rgb(255, 255, 255); /* Cambia il colore del testo dei paragrafi */
+      }
+
+.btn-toolset {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--bg-color-bianco);
+  text-decoration: none;
+  line-height: 1.2;
+  font-weight: normal;
+  font-family: sans-serif;
+  font-size: 18px;
+  background-color: #007BFF;
+  border-radius: 4px;
+  padding: 11px 19px;
+  border: 1px solid #006FE6;
+  cursor: pointer;
+}
+.btn-toolset:hover {
+  background-color: #0063CC;
+  border-color: #0056B3;
+}
+.btn-toolset > strong {
+  font-size: 24px;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:root{
+  --bg-color-bianco:rgb(255, 255, 255);
+  --bg-color-tabella:rgb(46, 87, 87);
+  --bg-color-tabella2: #424242;
+}
+
+.dark-mode { 
+  --bg-color-bianco:rgb(29, 29, 29);
+  --bg-color-tabella:rgb(193, 255, 255);
+  --bg-color-tabella2: #8a8a8a;
+}
+
+      #nome_videogioco, #descrizione_videogioco{
+        color: black;
+      }
+    </style>
+</head>
+<body>
+    <h1 class="text-center my-4">GAME CENTER</h1>
+
+    <b><p>Il nostro motto è:</p></b>
+
+    <b><p>Salta ^, Corri >>, Combatti / e Difenditi |), perché sono queste le basi di un grande game</p></b>
+
+    <br><br>
+
+    <button onclick="toggleTable()">Mostra/Nascondi l'elenco dei videogiochi</button>
+
+    <br><br>
+
+    <br>
+    
+    <div id="puff" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <table id="gamesTable" class="table table-striped">
+            <!-- Le righe della tabella saranno aggiunte qui -->
+          </table>
+        </div>
+        
+        <div id="buttonPanel" class="col-md-4 text-center">
+          <button onclick="aggiungiVideogioco()" type="button" class="btn btn-primary mb-2 w-100">Aggiungi il videogioco</button>
+          <button onclick="eliminaVideogioco()" type="button" class="btn btn-danger mb-2 w-100">Elimina il/i videogioco/hi</button>
+          <button onclick="aggiungiCopie()" type="button" class="btn btn-success mb-2 w-100">Aggiungi delle copie al videogioco</button>
+          <button onclick="vendiCopie()" type="button" class="btn btn-secondary mb-2 w-100">Vendi delle copie del videogioco</button>
+          <button onclick="aggiungiVideogiocoCasuale()" type="button" class="btn btn-primary mb-2 w-100">Aggiungi il videogioco casuale</button>
+          <p><button onclick="modificaPrezzo()" type="button" class="btn btn-warning mb-2 w-100">Modifica il prezzo videogioco</button></p>
+          <p><button onclick="dettaglio()">Mostra dettagli videogioco</button></p>
+          <p><button onclick="refreshCatalogo()">Refresha il catalogo, se no vattene dal mio negozio!</button></p>
+          <p><button onclick="window.location.href='homepage.html';">Torna alla Home Page</button></p>
+        </div>      
+      </div>
+
+      <!-- Modale Inserisci Videogioco Casuale -->
+      <div class="modal fade" id="modaleInserisciVideogioco" tabindex="-1" role="dialog" aria-labelledby="titoloModale" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Conferma l'aggiunta di un nuovo videogioco</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi" onclick="chiudiModaleInserisci()">
+                <span aria-hidden="true">x</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="newGameForm">
+                <div class="form-group">
+                  <label for="nome">Nome: </label>
+                  <input type="text" id="nome" name="nome" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="prezzo">Prezzo: </label>
+                  <input type="number" id="prezzo" name="prezzo" class="form-control" required min="1">
+                </div>
+                <div class="form-group">
+                  <label for="quantita">Quantità: </label>
+                  <input type="number" id="quantita" name="quantita" class="form-control" required min="1">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="chiudiModaleInserisci()">Annulla</button>
+                  <button type="submit" id="confermaInserimento" class="btn btn-primary" disabled>Aggiungi il videogioco</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modale Elimina Videogioco -->
+      <div class="modal fade" id="modaleEliminaVideogioco" tabindex="-1" role="dialog" aria-labelledby="titoloModale" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confermaEliminaVideogioco">Conferma l'elimazione del/i videogioco/hi</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi" onclick="chiudiModaleElimina()">
+                <span aria-hidden="true">x</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Sei sicuro di voler eliminare il videogioco?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="chiudiModaleElimina()">Annulla</button>
+              <button type="button" class="btn btn-primary" onclick="confermaEliminazioneVideogioco()">Elimina il/i videogioco/hi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modale Aggiunta Copie Videogioco -->
+      <div class="modal fade" id="modaleAggiuntaVideogioco" tabindex="-1" role="dialog" aria-labelledby="titoloModale" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confermaAggiungiCopieVideogioco">Conferma l'aggiunta del videogioco</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi" onclick="chiudiModaleAggiunta()">
+                <span aria-hidden="true">x</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Sei sicuro di voler aggiungere delle copie di questo videogioco?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="chiudiModaleAggiunta()">Annulla</button>
+              <button type="button" class="btn btn-primary" onclick="confermaAggiungiCopieVideogioco()">Aggiungi delle copie del videogioco</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modale Vendita Copie Videogioco -->
+      <div class="modal fade" id="modaleVenditaVideogioco" tabindex="-1" role="dialog" aria-labelledby="titoloModale" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confermaVendiCopieVideogioco">Conferma la vendita delle copie del videogioco</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi" onclick="chiudiModaleVendita()">
+                <span aria-hidden="true">x</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Sei sicuro di voler vendere delle copie di questo videogioco?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="chiudiModaleVendita()">Annulla</button>
+              <button type="button" class="btn btn-primary" onclick="confermaVendiCopieVideogioco()">Vendi delle copie del videogioco</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modale Modifica Prezzo Videogioco -->
+      <div class="modal fade" id="modaleModificaPrezzo" tabindex="-1" role="dialog" aria-labelledby="titoloModale" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confermaModificaPrezzoVideogioco">Conferma la vendita delle copie del videogioco</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi" onclick="chiudiModaleModificaPrezzo()">
+                <span aria-hidden="true">x</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Sei sicuro di voler modificare il prezzo di questo videogioco?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="chiudiModaleModificaPrezzo()">Annulla</button>
+              <button type="button" class="btn btn-primary" onclick="confermaModificaPrezzoVideogioco()">Modifica il prezzo del videogioco</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="dv" tabindex="-1" role="dialog" aria-labelledby="titoloModale" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" style="width: 900px; position: relative; left: 100px;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="dettaglio">Dettagli videogioco</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi" onclick="chiudiModaleDettaglioVideogioco()">
+                <span aria-hidden="true">x</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h1 id="nome_videogioco" class="modal-title" style="text-align: center;">ERRORE</h1>
+            </div>
+            <div class="modal-body">
+              <img id="immagine_dettaglio" src="immagini_sfondo/error.png" style="height: 300px;width: 480px;">
+            </div>
+            <div class="modal-body">
+            <p id="descrizione_videogioco">
+              Gioco non trovato!
+            </p>
+            </div>
+            <div id="footer_descrizione_videogioco" class="modal-footer">
+              <button type="button" data-dismiss="modal" onclick="chiudiModaleDettaglioVideogioco()">Annulla</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modale Inserisci Videogioco Casuale -->
+<div class="modal fade" id="modaleInserisciVideogiocoCasuale" tabindex="-1" role="dialog" aria-labelledby="titoloModale" aria-hidden="true" onshow="aggiungiVideogiocoCasuale()">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Conferma l'aggiunta di un nuovo videogioco casuale</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi" onclick="chiudiModaleInserisciCasuale()">
+                  <span aria-hidden="true">x</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="newGameFormCasual">
+                  <div class="form-group">
+                      <label for="nomeCasuale">Nome: </label>
+                      <input type="text" id="nomeCasuale" name="nomeCasuale" class="form-control" >
+                  </div>
+                  <div class="form-group">
+                      <label for="prezzoCasuale">Prezzo: </label>
+                      <input type="number" id="prezzoCasuale" name="prezzoCasuale" class="form-control" min="1">
+                  </div>
+                  <div class="form-group">
+                      <label for="quantitaCasuale">Quantità: </label>
+                      <input type="number" id="quantitaCasuale" name="quantitaCasuale" class="form-control" min="1">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="chiudiModaleInserisciCasuale()">Annulla</button>
+                      <button type="submit" id="confermaInserimento" class="btn btn-primary">Genera il videogioco casuale</button>
+                      <button type="button" class="btn btn-secondary" onclick="inserisciDatiCasuali()">Inserisci il videogioco casuale</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+    </div>
+
+    <script src="negozioScript.js"></script>
+</body>
+</html>
